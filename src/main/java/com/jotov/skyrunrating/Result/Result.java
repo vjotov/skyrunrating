@@ -6,7 +6,8 @@ import javax.persistence.Id;
 @Entity
 public class Result {
     @Id
-    private String id;
+    private int id;
+    private int score;
 
     public String getId() {
         return id;
@@ -16,6 +17,11 @@ public class Result {
         this.id = id;
     }
 
+    public int getScore() {
+        return score;
+    }
 
-
+    public void setScore(int score) {
+        this.score = score;
+    }
 }
