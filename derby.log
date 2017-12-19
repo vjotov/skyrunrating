@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Mon Dec 18 17:12:55 KRAT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0160-691c-af01-000005805938 
-on database directory memory:D:\_work\skyrunrating\testdb with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
-Loaded from file:/C:/Users/vj/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
+Tue Dec 19 00:22:05 KRAT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0160-6aa5-97f1-00000a2cb318 
+on database directory memory:H:\_Work\IdeaProjects\skyrunrating\testdb with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/v/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_151-b12
-user.dir=D:\_work\skyrunrating
+java.runtime.version=1.8.0_92-b14
+user.dir=H:\_Work\IdeaProjects\skyrunrating
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1

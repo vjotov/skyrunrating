@@ -7,21 +7,28 @@ import javax.persistence.Id;
 public class Result {
     @Id
     private int id;
-    private int score;
+    private int position;
+    private int result; // in seconds
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getScore() {
-        return score;
+    public int getPosition() {
+        return position;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public int getResult() { return result; }
+
+    public void setResult(int result) {
+        this.result = result;
     }
 }
