@@ -1,4 +1,4 @@
-package com.jotov.skyrunrating.Score;
+package com.jotov.skyrunrating.score;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

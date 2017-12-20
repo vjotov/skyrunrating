@@ -1,7 +1,5 @@
-package com.jotov.skyrunrating.Result;
+package com.jotov.skyrunrating.result;
 
-import com.jotov.skyrunrating.competition.CompetiotionRepository;
-import com.jotov.skyrunrating.competition.Competition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

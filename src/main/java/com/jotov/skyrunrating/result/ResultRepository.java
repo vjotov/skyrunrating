@@ -1,6 +1,5 @@
-package com.jotov.skyrunrating.Result;
+package com.jotov.skyrunrating.result;
 
-import com.jotov.skyrunrating.runner.Runner;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ResultRepository extends CrudRepository<Result, Integer> {
