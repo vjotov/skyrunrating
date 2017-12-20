@@ -1,9 +1,11 @@
 package com.jotov.skyrunrating.runner;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Runner {
+    @Id
     private int id;
     private String name;
     private String dateOfBirth;
