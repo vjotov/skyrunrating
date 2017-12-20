@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController {
     @RequestMapping(value = "/uploadfile", method =RequestMethod.GET)
     public String showUploadForm() {
-        return "uploadForm";
+        return "uploadForm.jsp";
     }
 
     @RequestMapping(value = "/uploadfile", method = RequestMethod.POST)
