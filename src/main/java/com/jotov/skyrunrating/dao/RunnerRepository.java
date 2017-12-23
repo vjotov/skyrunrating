@@ -1,6 +1,6 @@
-package com.jotov.skyrunrating.runner;
+package com.jotov.skyrunrating.dao;
 
-import com.jotov.skyrunrating.competition.Competition;
+import com.jotov.skyrunrating.model.Runner;
 import org.springframework.data.repository.CrudRepository;
 
 public interface RunnerRepository extends CrudRepository<Runner, Integer> {

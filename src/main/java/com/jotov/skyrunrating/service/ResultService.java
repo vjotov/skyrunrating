@@ -1,5 +1,7 @@
-package com.jotov.skyrunrating.result;
+package com.jotov.skyrunrating.service;
 
+import com.jotov.skyrunrating.model.Result;
+import com.jotov.skyrunrating.dao.ResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
