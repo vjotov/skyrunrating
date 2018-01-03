@@ -18,19 +18,19 @@ public class ResultService {
         return results;
     }
 
-    public Result getCourse(Integer id) {
+    public Result getResult(Integer id) {
         return resultRepository.findOne(id);
     }
 
-    public void createCourse(Result result) {
+    public void createResult(Result result) {
         resultRepository.save(result);
     }
 
-    public void updateCourse(Result result) {
+    public void updateResult(Result result) {
         resultRepository.save(result);
     }
 
-    public void deleteCourse(Integer id) {
+    public void deleteResult(Integer id) {
         resultRepository.delete(id);
     }
 }

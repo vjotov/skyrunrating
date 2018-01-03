@@ -18,19 +18,19 @@ public class CompetitionService {
         return competitions;
     }
 
-    public Competition getCourse(Integer id) {
+    public Competition getCompetition(Integer id) {
         return competiotionRepository.findOne(id);
     }
 
-    public void createCourse(Competition course) {
+    public void createCompetition(Competition course) {
         competiotionRepository.save(course);
     }
 
-    public void updateCourse(Competition course) {
+    public void updateCompetition(Competition course) {
         competiotionRepository.save(course);
     }
 
-    public void deleteCourse(Integer id) {
+    public void deleteCompetition(Integer id) {
         competiotionRepository.delete(id);
     }
 }

@@ -13,26 +13,26 @@ public class RunnerService {
     @Autowired
     private RunnerRepository runnerRepository;
 
-    public List<Runner> getAllCompetitions() {
+    public List<Runner> getAllRunners() {
         List<Runner> runners = new ArrayList<>();
         runnerRepository.findAll()
                 .forEach(runners::add);
         return runners;
     }
 
-    public Runner getCourse(Integer id) {
+    public Runner getRunner(Integer id) {
         return runnerRepository.findOne(id);
     }
 
-    public void createCourse(Runner runner) {
+    public void createRunner(Runner runner) {
         runnerRepository.save(runner);
     }
 
-    public void updateCourse(Runner runner) {
+    public void updateRunner(Runner runner) {
         runnerRepository.save(runner);
     }
 
-    public void deleteCourse(Integer id) {
+    public void deleteRunner(Integer id) {
         runnerRepository.delete(id);
     }
 }

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Competition {
@@ -11,7 +12,7 @@ public class Competition {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    private String Description;
+    private Date date;
     private int maxPoints;
     private int meterDistance;
     private int meterDisplacement;
@@ -20,13 +21,13 @@ public class Competition {
 
     public Competition(int id,
                        String name,
-                       String description,
+                       Date description,
                        Integer meterDistance,
                        Integer meterDisplacement,
                        Integer maxPoints) {
         this.id = id;
         this.name = name;
-        Description = description;
+        date = description;
         this.meterDistance = meterDistance;
         if(meterDisplacement == null)
             meterDisplacement = 0;
@@ -53,12 +54,12 @@ public class Competition {
         this.name = name;
     }
 
-    public String getDescription() {
-        return Description;
+    public Date getDescription() {
+        return date;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public void setDescription(Date date) {
+        this.date = date;
     }
 
     public int getMaxPoints() {

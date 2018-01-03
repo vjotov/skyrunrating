@@ -11,26 +11,26 @@ public class ScoreService {
     @Autowired
     private ScoreRepository scoreRepository;
 
-    public List<Score> getAllCompetitions() {
+    public List<Score> getAllScores() {
         List<Score> scores = new ArrayList<>();
         scoreRepository.findAll()
                 .forEach(scores::add);
         return scores;
     }
 
-    public Score getCourse(Integer id) {
+    public Score getScore(Integer id) {
         return scoreRepository.findOne(id);
     }
 
-    public void createCourse(Score score) {
+    public void createScore(Score score) {
         scoreRepository.save(score);
     }
 
-    public void updateCourse(Score score) {
+    public void updateScore(Score score) {
         scoreRepository.save(score);
     }
 
-    public void deleteCourse(Integer id) {
+    public void deleteScore(Integer id) {
         scoreRepository.delete(id);
     }
 }
