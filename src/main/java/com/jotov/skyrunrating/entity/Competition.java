@@ -1,4 +1,6 @@
-package com.jotov.skyrunrating.competition;
+package com.jotov.skyrunrating.entity;
+
+import com.jotov.skyrunrating.model.CompetitionModel;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,26 +18,28 @@ public class Competition {
     private int maxPoints;
     private int meterDistance;
     private int meterDisplacement;
+    private int secondsRecord;
 
     public Competition() {}
 
     public Competition(int id,
                        String name,
                        Date description,
-                       Integer meterDistance,
-                       Integer meterDisplacement,
-                       Integer maxPoints) {
+                       int meterDistance,
+                       int meterDisplacement,
+                       int maxPoints,
+                       int secondsRecord) {
         this.id = id;
         this.name = name;
         date = description;
         this.meterDistance = meterDistance;
-        if(meterDisplacement == null)
-            meterDisplacement = 0;
         this.meterDisplacement = meterDisplacement;
-        if(maxPoints == null)
-            maxPoints = 100;
         this.maxPoints = maxPoints;
-
+        this.secondsRecord = secondsRecord;
+    }
+    public Competition(CompetitionModel model) {
+        name = model.getName();
+        date = model.getDate();
     }
 
     public Integer getId() {
@@ -54,11 +58,11 @@ public class Competition {
         this.name = name;
     }
 
-    public Date getDescription() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDescription(Date date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -86,6 +90,11 @@ public class Competition {
         this.meterDisplacement = meterDisplacement;
     }
 
+    public int getSecondsRecord() {
+        return secondsRecord;
+    }
 
-
+    public void setSecondsRecord(int secondsRecord) {
+        this.secondsRecord = secondsRecord;
+    }
 }
