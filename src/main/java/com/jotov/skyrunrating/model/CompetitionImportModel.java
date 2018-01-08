@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;
 import java.util.Date;
 
-public class CompetitionModel {
+public class CompetitionImportModel {
     //Название,Дистанция,Набор,Количество баллов,Рекорд,Дата
     @CsvBindByName(column = "Название",required = true)
     private String name;
@@ -26,9 +26,9 @@ public class CompetitionModel {
     // TODO: to change to java.time.Duration
     private int secondsRecord;
 
-    public CompetitionModel() {}
+    public CompetitionImportModel() {}
 
-    public CompetitionModel(
+    public CompetitionImportModel(
                             String name,
                             Date description,
                             int maxPoints,

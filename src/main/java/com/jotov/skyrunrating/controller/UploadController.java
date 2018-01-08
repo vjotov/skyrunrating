@@ -1,5 +1,10 @@
 package com.jotov.skyrunrating.controller;
 
+import com.jotov.skyrunrating.competition.CompetitionService;
+import com.jotov.skyrunrating.model.CompetitionImportModel;
+import com.opencsv.CSVReader;
+import com.opencsv.bean.CsvToBeanBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,14 +13,20 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Controller
 public class UploadController {
-    private static String UPLOAD_FOLDER = "D://tmp//";
+
+    @Autowired
+    private CompetitionService competitionService;
 
     @GetMapping("/upload")
     public ModelAndView index(ModelAndView modelAndView) {
@@ -25,23 +36,18 @@ public class UploadController {
 
     @PostMapping("/upload")
     public String singleFileUpload(
-            @RequestParam("file")MultipartFile file,
+            @RequestParam("competitionFile")MultipartFile competitionFile,
+            //@RequestParam("resultFile")MultipartFile resultFile,
             RedirectAttributes redirectAttributes
             ) {
-        if(file.isEmpty()) {
+        //https://stackoverflow.com/questions/28268499/understanding-multipartfile-transferto-method-in-spring-mvc
+
+        if(competitionFile.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
             return "redirect:uploadStatus";
         }
-        try{
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOAD_FOLDER+file.getOriginalFilename());
-            Files.write(path, bytes);
+        competitionService.validateImport(competitionFile);
 
-            redirectAttributes.addFlashAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return "redirect:uploadStatus";
     }
 
@@ -50,4 +56,5 @@ public class UploadController {
         modelAndView.setViewName("uploadStatus");
         return modelAndView;
     }
+
 }
