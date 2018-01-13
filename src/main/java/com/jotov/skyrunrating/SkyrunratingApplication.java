@@ -7,6 +7,8 @@ import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomize
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 
+import java.time.Duration;
+
 @SpringBootApplication
 public class SkyrunratingApplication {
 	private int maxUploadSizeInMb = 10 * 1024 * 1024; // 10 MB
@@ -31,5 +33,24 @@ public class SkyrunratingApplication {
 
 		return tomcat;
 
+	}
+
+	// TODO - to move as Bean
+	public static Duration parseStringToDuration(String input) {
+		String[] parts = input.split ( ":" );
+		Duration d = Duration.ZERO;
+		if ( parts.length == 3 ) {
+			int hours = Integer.parseInt ( parts[ 0 ] );
+			int minutes = Integer.parseInt ( parts[ 1 ] );
+			int seconds = Integer.parseInt ( parts[ 2 ] );
+			d = d.plusHours ( hours ).plusMinutes ( minutes ).plusSeconds ( seconds );
+		} else if ( parts.length == 2 ) {
+			int hours = Integer.parseInt ( parts[ 0 ] );
+			int minutes = Integer.parseInt ( parts[ 1 ] );
+			d = d.plusHours ( hours ).plusMinutes ( minutes );
+		} else {
+			System.out.println ( "ERROR - Unexpected input." );
+		}
+		return d;
 	}
 }

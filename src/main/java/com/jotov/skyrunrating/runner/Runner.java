@@ -15,7 +15,7 @@ public class Runner {
     private String sex;
     private String city;
     private String region;
-    private String Team;
+    private String team;
 
     public Runner() { }
 
@@ -32,7 +32,7 @@ public class Runner {
         this.sex = sex;
         this.city = city;
         this.region = region;
-        Team = team;
+        this.team = team;
     }
 
     public int getId() {
@@ -84,10 +84,10 @@ public class Runner {
     }
 
     public String getTeam() {
-        return Team;
+        return team;
     }
 
     public void setTeam(String team) {
-        Team = team;
+        this.team = team;
     }
 }

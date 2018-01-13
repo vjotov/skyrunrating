@@ -2,6 +2,7 @@ package com.jotov.skyrunrating.competition;
 
 import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.model.CompetitionImportModel;
+import com.jotov.skyrunrating.model.RunnerResultImportModel;
 import com.opencsv.CSVReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -160,7 +161,7 @@ public class CompetitionService {
     }
 
     private void setRunnerResultData(CompetitionImportModel model, String[] nextLine) {
-        
+        RunnerResultImportModel runnerResult;
     }
 }
 

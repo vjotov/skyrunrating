@@ -4,7 +4,10 @@ import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
+
+import static com.jotov.skyrunrating.SkyrunratingApplication.parseStringToDuration;
 
 public class CompetitionImportModel {
     //Название,Дистанция,Набор,Количество баллов,Рекорд,Дата
@@ -28,7 +31,11 @@ public class CompetitionImportModel {
     // TODO: to change to java.time.Duration
     private Duration secondsRecord;
 
-    public CompetitionImportModel() {}
+    private ArrayList<RunnerResultImportModel> runnerResults;
+
+    public CompetitionImportModel() {
+        this.runnerResults = new ArrayList<RunnerResultImportModel>();
+    }
 
     public CompetitionImportModel(
                             String name,
@@ -44,6 +51,7 @@ public class CompetitionImportModel {
         this.meterDisplacement = meterDisplacement;
         this.maxPoints = maxPoints;
         this.secondsRecord = secondsRecord;
+        this.runnerResults = new ArrayList<RunnerResultImportModel>();
     }
 
 
@@ -96,20 +104,14 @@ public class CompetitionImportModel {
     }
 
     public void setSecondsRecord(String input) {
-        String[] parts = input.split ( ":" );
-        Duration d = Duration.ZERO;
-        if ( parts.length == 3 ) {
-            int hours = Integer.parseInt ( parts[ 0 ] );
-            int minutes = Integer.parseInt ( parts[ 1 ] );
-            int seconds = Integer.parseInt ( parts[ 2 ] );
-            d = d.plusHours ( hours ).plusMinutes ( minutes ).plusSeconds ( seconds );
-        } else if ( parts.length == 2 ) {
-            int hours = Integer.parseInt ( parts[ 0 ] );
-            int minutes = Integer.parseInt ( parts[ 1 ] );
-            d = d.plusHours ( hours ).plusMinutes ( minutes );
-        } else {
-            System.out.println ( "ERROR - Unexpected input." );
-        }
-        this.secondsRecord = d;
+        this.secondsRecord = parseStringToDuration(input);
+    }
+
+    public ArrayList<RunnerResultImportModel> getRunnerResults() {
+        return runnerResults;
+    }
+
+    public void addRunnerResults(RunnerResultImportModel runnerResults) {
+        this.runnerResults.add(runnerResults);
     }
 }
