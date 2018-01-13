@@ -1,6 +1,7 @@
 package com.jotov.skyrunrating.competition;
 
 import com.jotov.skyrunrating.entity.Competition;
+import com.jotov.skyrunrating.model.CompetitionImportModel;
 import com.opencsv.CSVReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,12 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static com.jotov.skyrunrating.competition.CompetitionCSVFormatException.FORMAT_ERROR.*;
 
 @Service
 public class CompetitionService {
@@ -70,7 +70,8 @@ public class CompetitionService {
         }
     }
 
-    private void validateImport(FileReader fileReader) throws IOException, CompetitionCSVFormatException {
+    private CompetitionImportModel validateImport(FileReader fileReader) throws IOException, CompetitionCSVFormatException {
+        CompetitionImportModel model = new CompetitionImportModel();
         CSVReader csvReader = new CSVReader(fileReader);
         CSV_PART mode = CSV_PART.COMPETITION_HEAD; // 0 - competition header, 1 - competition data, 2 - competitors header, 3 - competitors data
         String [] nextLine;
@@ -86,6 +87,7 @@ public class CompetitionService {
                 case COMPETITION_DATA: {
                     if(nextLine.length != competitionColumnsNumber) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.COMPETITION_DATA_MISSING_COLUMNS, csvReader.getLinesRead());
                     if(hasIncorrectDataFormat(nextLine,competitionData)) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.COMPETITION_DATA_WRONG_COLUMN_FORMAT, csvReader.getLinesRead());
+                    setCompetitionData(model, nextLine);
                     mode = CSV_PART.RUNNERS_HEAD;
                     break;
                 }
@@ -100,14 +102,16 @@ public class CompetitionService {
                 case RUNNERS_DATA: {
                     if(nextLine.length != runnerColumnsNumber) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.RUNNER_DATA_MISSING_COLUMNS, csvReader.getLinesRead());
                     if(hasIncorrectDataFormat(nextLine,runnersData)) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.RUNNER_DATA_WRONG_COLUMN_FORMAT, csvReader.getLinesRead());
-
+                    setRunnerResultData(model, nextLine);
                     break;
                 }
                 default: break;
             }
 
         }
+        return model;
     }
+
     private boolean hasIncorrectHeadColumnOrder(String[] line, String[] spec) {
         boolean result = true;
         for(int i = 0; i < spec.length; i++) {
@@ -141,6 +145,22 @@ public class CompetitionService {
             }
         }
         return false;
+    }
+
+    private void setCompetitionData(CompetitionImportModel model, String [] line) {
+        //TODO  -to remove hardcoded indexes
+        model.setName(line[0]);
+        model.setMeterDistance(Integer.parseInt(line[1]));
+        model.setMeterDisplacement(Integer.parseInt(line[2]));
+        model.setMaxPoints(Integer.parseInt(line[3]));
+        model.setSecondsRecord(line[4]);
+        try {
+            model.setDate(dateFormat.parse(line[5]));
+        } catch (ParseException e) {model.setDate(new Date());}
+    }
+
+    private void setRunnerResultData(CompetitionImportModel model, String[] nextLine) {
+        
     }
 }
 

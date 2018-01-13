@@ -1,6 +1,6 @@
 package com.jotov.skyrunrating.entity;
 
-import com.jotov.skyrunrating.model.CompetitionModel;
+import com.jotov.skyrunrating.model.CompetitionImportModel;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +37,7 @@ public class Competition {
         this.maxPoints = maxPoints;
         this.secondsRecord = secondsRecord;
     }
-    public Competition(CompetitionModel model) {
+    public Competition(CompetitionImportModel model) {
         name = model.getName();
         date = model.getDate();
     }

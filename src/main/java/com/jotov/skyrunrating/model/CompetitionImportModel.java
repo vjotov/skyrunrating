@@ -2,29 +2,31 @@ package com.jotov.skyrunrating.model;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;
+
+import java.time.Duration;
 import java.util.Date;
 
 public class CompetitionImportModel {
     //Название,Дистанция,Набор,Количество баллов,Рекорд,Дата
-    @CsvBindByName(column = "Название",required = true)
+    //@CsvBindByName(column = "Название",required = true)
     private String name;
 
-    @CsvBindByName(column = "Дата", required = true)
-    @CsvDate("dd.MM.yyyy")
+    //@CsvBindByName(column = "Дата", required = true)
+    //@CsvDate("dd.MM.yyyy")
     private Date date;
 
-    @CsvBindByName(column = "Количество баллов", required = true)
+    //@CsvBindByName(column = "Количество баллов", required = true)
     private int maxPoints;
 
-    @CsvBindByName(column = "Дистанция", required = true)
+    //@CsvBindByName(column = "Дистанция", required = true)
     private int meterDistance;
 
-    @CsvBindByName(column = "Набор", required = true)
+    //@CsvBindByName(column = "Набор", required = true)
     private int meterDisplacement;
 
-    @CsvBindByName(column = "Рекорд", required = true)
+    //@CsvBindByName(column = "Рекорд", required = true)
     // TODO: to change to java.time.Duration
-    private int secondsRecord;
+    private Duration secondsRecord;
 
     public CompetitionImportModel() {}
 
@@ -34,7 +36,7 @@ public class CompetitionImportModel {
                             int maxPoints,
                             int meterDistance,
                             int meterDisplacement,
-                            int secondsRecord
+                            Duration secondsRecord
                             ) {
         this.name = name;
         date = description;
@@ -85,11 +87,29 @@ public class CompetitionImportModel {
         this.meterDisplacement = meterDisplacement;
     }
 
-    public int getSecondsRecord() {
+    public Duration getSecondsRecord() {
         return secondsRecord;
     }
 
-    public void setSecondsRecord(int secondsRecord) {
+    public void setSecondsRecord(Duration secondsRecord) {
         this.secondsRecord = secondsRecord;
+    }
+
+    public void setSecondsRecord(String input) {
+        String[] parts = input.split ( ":" );
+        Duration d = Duration.ZERO;
+        if ( parts.length == 3 ) {
+            int hours = Integer.parseInt ( parts[ 0 ] );
+            int minutes = Integer.parseInt ( parts[ 1 ] );
+            int seconds = Integer.parseInt ( parts[ 2 ] );
+            d = d.plusHours ( hours ).plusMinutes ( minutes ).plusSeconds ( seconds );
+        } else if ( parts.length == 2 ) {
+            int hours = Integer.parseInt ( parts[ 0 ] );
+            int minutes = Integer.parseInt ( parts[ 1 ] );
+            d = d.plusHours ( hours ).plusMinutes ( minutes );
+        } else {
+            System.out.println ( "ERROR - Unexpected input." );
+        }
+        this.secondsRecord = d;
     }
 }
