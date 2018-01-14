@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <body>
 
 <h1>Spring Boot - Upload Status</h1>
@@ -7,6 +9,16 @@
 <div th:if="${message}">
     <h2 th:text="${message}"/>
 </div>
+
+
+<th:block th:object="${ciModel}">
+    <h3 th:text="*{name}" />
+    <p th:text="*{date}" />
+    <p th:text="*{maxPoints}" />
+    <p th:text="*{meterDistance}" />
+    <p th:text="*{meterDisplacement}" />
+    <p th:text="*{secondsRecord}" />
+</th:block>
 
 </body>
 </html>

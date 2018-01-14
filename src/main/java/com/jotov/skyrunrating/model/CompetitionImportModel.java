@@ -28,7 +28,6 @@ public class CompetitionImportModel {
     private int meterDisplacement;
 
     //@CsvBindByName(column = "Рекорд", required = true)
-    // TODO: to change to java.time.Duration
     private Duration secondsRecord;
 
     private ArrayList<RunnerResultImportModel> runnerResults;
