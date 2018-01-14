@@ -13,9 +13,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static com.jotov.skyrunrating.SkyrunratingApplication.parseStringToDuration;
 
 @Service
 public class CompetitionService {
@@ -27,7 +30,7 @@ public class CompetitionService {
     // TODO - to move them to resources
     private static final String[] competitionHead = {"Название","Дистанция","Набор","Количество баллов","Рекорд","Дата"};
     private static final TYPES[] competitionData = {TYPES.STRING, TYPES.INT, TYPES.INT, TYPES.INT, TYPES.TIME, TYPES.DATE};
-    private static final String[] runnersHead = {"Место","ФИО","Время","Пол","Группа","Клуб"};
+    private static final String[] runnersHead = {"Место","ФИО","Время","Пол","Город","Клуб"};
     private static final TYPES[] runnersData = {TYPES.INT, TYPES.STRING, TYPES.TIME, TYPES.STRING, TYPES.STRING, TYPES.STRING};
     private static final int competitionColumnsNumber = competitionHead.length;
     private static final int runnerColumnsNumber = runnersHead.length;
@@ -61,13 +64,15 @@ public class CompetitionService {
         competiotionRepository.delete(id);
     }
 
-    public void validateImport(MultipartFile competitionFile) {
+    public CompetitionImportModel validateImport(MultipartFile competitionFile) {
         File cf = new File(UPLOAD_FOLDER+competitionFile.getOriginalFilename());
         try{
             competitionFile.transferTo(cf);
-            validateImport(new FileReader(cf));
+            return validateImport(new FileReader(cf));
         } catch (Exception ex) {
             //TODO
+            System.out.println("Validation error");
+            return null;
         }
     }
 
@@ -122,24 +127,27 @@ public class CompetitionService {
     }
 
     private boolean hasIncorrectDataFormat(String[] line, TYPES[] spec) {
+        int ii;
+        Date date;
+        Duration duration;
         for(int i = 0; i < spec.length; i++) {
             switch(spec[i]) {
                 case STRING : break;
                 case INT : {
                     try {
-                        int ii = Integer.parseInt(line[i]);
+                        ii = Integer.parseInt(line[i]);
                     } catch (Exception ex) {return true;}
                     break;
                 }
                 case DATE : {
                     try {
-                        Date d = dateFormat.parse(line[i]);
+                        date = dateFormat.parse(line[i]);
                     } catch (Exception e) {return true;}
                     break;
                 }
                 case TIME : {
-                    try{
-                        Date d = timeFormat.parse(line[i]);
+                    try {
+                        duration = parseStringToDuration(line[i]);
                     } catch (Exception e) {return true;}
                     break;
                 }
@@ -160,8 +168,17 @@ public class CompetitionService {
         } catch (ParseException e) {model.setDate(new Date());}
     }
 
-    private void setRunnerResultData(CompetitionImportModel model, String[] nextLine) {
-        RunnerResultImportModel runnerResult;
+    private void setRunnerResultData(CompetitionImportModel model, String[] line) {
+        //TODO  -to remove hardcoded indexes
+        RunnerResultImportModel runnerResult = new RunnerResultImportModel();
+        runnerResult.setPosition(Integer.parseInt(line[0]));
+        runnerResult.setName(line[1]);
+        runnerResult.setResultSeconds(line[2]);
+        runnerResult.setSex(line[3]);
+        runnerResult.setCity(line[4]);
+        runnerResult.setTeam(line[5]);
+
+        model.addRunnerResults(runnerResult);
     }
 }
 

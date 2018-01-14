@@ -21,12 +21,20 @@ public class RunnerResultImportModel {
         this.city = city;
         this.region = region;
         this.team = team;
+        this.resultSeconds = resultSeconds;
+        this.position = position;
     }
 
     public RunnerResultImportModel(String name, String sex, String team, Duration resultSeconds, int position) {
         this.name = name;
         this.sex = sex;
         this.team = team;
+        this.resultSeconds = resultSeconds;
+        this.position = position;
+    }
+
+    public RunnerResultImportModel(String[] line) {
+
     }
 
     public String getName() {
@@ -87,5 +95,10 @@ public class RunnerResultImportModel {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return position+". "+name+" - "+sex+" - "+resultSeconds.toString()+" - "+team+"("+city+")";
     }
 }
