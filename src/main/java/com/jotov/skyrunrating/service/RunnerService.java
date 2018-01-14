@@ -1,5 +1,7 @@
-package com.jotov.skyrunrating.runner;
+package com.jotov.skyrunrating.service;
 
+import com.jotov.skyrunrating.entity.Runner;
+import com.jotov.skyrunrating.repository.RunnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

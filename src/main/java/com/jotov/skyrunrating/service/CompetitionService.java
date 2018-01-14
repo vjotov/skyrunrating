@@ -1,5 +1,6 @@
-package com.jotov.skyrunrating.competition;
+package com.jotov.skyrunrating.service;
 
+import com.jotov.skyrunrating.repository.CompetiotionRepository;
 import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.model.CompetitionImportModel;
 import com.jotov.skyrunrating.model.RunnerResultImportModel;

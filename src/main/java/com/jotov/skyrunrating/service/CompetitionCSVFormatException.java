@@ -1,4 +1,4 @@
-package com.jotov.skyrunrating.competition;
+package com.jotov.skyrunrating.service;
 
 public class CompetitionCSVFormatException extends Exception {
 

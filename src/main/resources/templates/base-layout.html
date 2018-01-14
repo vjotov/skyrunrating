@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="~{fragments/head :: head-clear}"-->
+      <!--th:with="pageTitle='SoftUni'"></head>-->
+
+<!--<head th:replace="fragments/head :: head-param(~{::title})">-->
+        <!--<title>Something</title>-->
+<!--</head>-->
+
+<!--<head th:replace="fragments/head :: head-param(~{this::title})">-->
+    <!--<title>Something</title>-->
+<!--</head>-->
+
+<head th:replace="fragments/head :: head-param(~{::#ivan})">
+    <title id="pesho">Something3</title>
+    <title id="ivan">Otherthing</title>
+</head>
+
+<body>
+<!--<header th:insert="~{fragments/header}"> </header>-->
+<header th:replace="~{fragments/header}"> </header>
+<main></main>
+<footer></footer>
+</body>
+</html>

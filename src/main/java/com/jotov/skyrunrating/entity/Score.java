@@ -1,4 +1,4 @@
-package com.jotov.skyrunrating.score;
+package com.jotov.skyrunrating.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

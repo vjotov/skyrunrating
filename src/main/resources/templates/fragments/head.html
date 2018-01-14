@@ -1,0 +1,12 @@
+<head th:fragment="head-clear">
+    <meta charset="UTF-8">
+    <title th:if="${pageTitle}" th:text="${pageTitle}"></title>
+    <!--<link th:href="@{/css/bootstrap.min.css" ref="stylesheet" type="text/css"/>-->
+</head>
+
+<head th:fragment="head-param (pageTitle)">
+    <meta charset="UTF-8">
+    <title th:replace="${pageTitle}"></title>
+    <!--<title th:text="${pageTitle}"></title>-->
+    <!--<link th:href="@{/css/bootstrap.min.css" ref="stylesheet" type="text/css"/>-->
+</head>
