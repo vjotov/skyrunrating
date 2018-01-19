@@ -21,4 +21,9 @@ public class CompetitionCSVFormatException extends Exception {
         this.error_line = error_line;
     }
 
+    @Override
+    public String getMessage(){
+        return "Incorrect data on Line "+error_line +"/ Error Code:" + error_type;
+    }
+
 }

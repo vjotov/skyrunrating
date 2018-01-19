@@ -1,4 +1,4 @@
-package com.jotov.skyrunrating.frontend;
+package com.jotov.skyrunrating.controller;
 
 import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.model.CompetitionImportModel;
@@ -56,8 +56,9 @@ public class HomeController {
         return mav;
     }
 
-    @GetMapping("/")
+    //@GetMapping("/")
     public ModelAndView home(){
+        //TODO - load data for home screen
         return new ModelAndView("base-layout");
     }
 
