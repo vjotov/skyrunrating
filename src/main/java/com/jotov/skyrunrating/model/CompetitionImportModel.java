@@ -38,14 +38,14 @@ public class CompetitionImportModel {
 
     public CompetitionImportModel(
                             String name,
-                            Date description,
+                            Date date,
                             int maxPoints,
                             int meterDistance,
                             int meterDisplacement,
                             Duration secondsRecord
                             ) {
         this.name = name;
-        date = description;
+        this.date = date;
         this.meterDistance = meterDistance;
         this.meterDisplacement = meterDisplacement;
         this.maxPoints = maxPoints;
@@ -112,5 +112,10 @@ public class CompetitionImportModel {
 
     public void addRunnerResults(RunnerResultImportModel runnerResults) {
         this.runnerResults.add(runnerResults);
+    }
+
+    @Override
+    public String toString() {
+        return name+" "+maxPoints+" "+meterDistance;
     }
 }

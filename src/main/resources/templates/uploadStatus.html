@@ -18,6 +18,27 @@
     <p th:text="*{meterDistance}" />
     <p th:text="*{meterDisplacement}" />
     <p th:text="*{secondsRecord}" />
+
+    <table>
+        <tr>
+            <th>NAME</th>
+            <th>SEX</th>
+            <th>City</th>
+            <th>Region</th>
+            <th>Team</th>
+            <th>Result</th>
+            <th>Position</th>
+        </tr>
+        <tr th:each="rs : *{runnerResults}">
+            <td th:text="${rs}">Onions</td>
+            <td th:text="${rs.sex}">2.41</td>
+            <td th:text="${rs.city}">yes</td>
+            <td th:text="${rs.region}">yes</td>
+            <td th:text="${rs.team}">yes</td>
+            <td th:text="${rs.resultSeconds}">yes</td>
+            <td th:text="${rs.position}">yes</td>
+        </tr>
+    </table>
 </th:block>
 
 </body>
