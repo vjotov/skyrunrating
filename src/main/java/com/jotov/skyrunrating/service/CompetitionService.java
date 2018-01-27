@@ -71,7 +71,7 @@ public class CompetitionService {
             competitionFile.transferTo(cf);
             return validateImport(new FileReader(cf));
         } catch (Exception ex) {
-            //TODO
+            ex.getMessage();
             System.out.println("Validation error");
             return null;
         }
