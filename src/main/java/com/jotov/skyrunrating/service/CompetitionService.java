@@ -65,16 +65,16 @@ public class CompetitionService {
         competiotionRepository.delete(id);
     }
 
-    public CompetitionImportModel validateImport(MultipartFile competitionFile) {
+    public CompetitionImportModel validateImport(MultipartFile competitionFile) throws IOException, CompetitionCSVFormatException{
         File cf = new File(UPLOAD_FOLDER+competitionFile.getOriginalFilename());
-        try{
+//        try{
             competitionFile.transferTo(cf);
             return validateImport(new FileReader(cf));
-        } catch (Exception ex) {
-            ex.getMessage();
-            System.out.println("Validation error");
-            return null;
-        }
+//        } catch (Exception ex) {
+//            ex.getMessage();
+//            System.out.println("Validation error");
+//            return null;
+//        }
     }
 
     private CompetitionImportModel validateImport(FileReader fileReader) throws IOException, CompetitionCSVFormatException {

@@ -43,14 +43,12 @@ public class UploadController {
         }
         try {
              ciModel = competitionService.validateImport(competitionFile);
-        } catch (CompetitionCSVFormatException ex) {
+            modelAndView.addObject("message", "File is successfully validated. Please overview the data in it");
+
+        } catch (Exception ex) {
             modelAndView.addObject("message", ex.getMessage());
             return null;
-        } catch (IOException ex) {
-            modelAndView.addObject("message",ex.getMessage());
-            return null;
         }
-        modelAndView.addObject("message", "File is successfully validated. Please overview the data in it");
         modelAndView.addObject("ciModel",ciModel);
         return modelAndView;
     }
