@@ -24,6 +24,13 @@ public class RunnerService {
         return runnerRepository.findOne(id);
     }
 
+    public List<Runner> getRunner(String name) {
+        List<Runner> runners = new ArrayList<>();
+        //TODO
+        //return runnerRepository.findByName(name);
+        return runners;
+    }
+
     public void createRunner(Runner runner) {
         runnerRepository.save(runner);
     }

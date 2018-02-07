@@ -2,13 +2,15 @@ package com.jotov.skyrunrating.model;
 
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 
 import static com.jotov.skyrunrating.SkyrunratingApplication.parseStringToDuration;
-
+@Configuration
 public class CompetitionImportModel {
     //Название,Дистанция,Набор,Количество баллов,Рекорд,Дата
     //@CsvBindByName(column = "Название",required = true)
@@ -31,6 +33,11 @@ public class CompetitionImportModel {
     private Duration secondsRecord;
 
     private ArrayList<RunnerResultImportModel> runnerResults;
+
+    @Bean(scope=DefaultScopes)
+    public CompetitionImportModel CompetitionImportModelBean() {
+        return new CompetitionImportModel();
+    }
 
     public CompetitionImportModel() {
         this.runnerResults = new ArrayList<RunnerResultImportModel>();

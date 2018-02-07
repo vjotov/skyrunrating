@@ -42,6 +42,11 @@ public class CompetitionService {
     @Autowired
     private CompetiotionRepository competiotionRepository;
 
+    @Autowired
+    private RunnerService runnerService;
+
+    private ResultService resultService;
+
     public List<Competition> getAllCompetitions() {
         List<Competition> competitions = new ArrayList<>();
         competiotionRepository.findAll()
@@ -53,8 +58,40 @@ public class CompetitionService {
         return competiotionRepository.findOne(id);
     }
 
-    public void createCompetition(Competition course) {
-        competiotionRepository.save(course);
+    public void createCompetition(Competition competition) {
+        competiotionRepository.save(competition);
+    }
+
+    private int createCompetition(String[] line) {
+        //TODO - create competition and return its ID
+        Competition competition = new Competition();
+        competition.setName(line[0]);
+        competition.setMeterDistance(Integer.parseInt(line[1]));
+        competition.setMeterDisplacement(Integer.parseInt(line[2]));
+        competition.setMaxPoints(Integer.parseInt(line[3]));
+        competition.setSecondsRecord(Integer.parseInt(line[4]));
+        try {
+            competition.setDate(dateFormat.parse(line[5]));
+        } catch (ParseException e) {competition.setDate(new Date());}
+
+        createCompetition(competition);
+        return competition.getId();
+    }
+
+    private void createRunnerAndResult(int competitionId, String[] line) {
+//        RunnerResultImportModel runnerResult = new RunnerResultImportModel();
+//        runnerResult.setPosition(Integer.parseInt(line[0]));
+//        runnerResult.setName(line[1]);
+//        runnerResult.setResultSeconds(line[2]);
+//        runnerResult.setSex(line[3]);
+//        runnerResult.setCity(line[4]);
+//        runnerResult.setTeam(line[5]);
+
+        // TODO - check for Runner and load if exists
+        // runnerService
+
+        // TODO create result and attach to the runner
+        // resultService
     }
 
     public void updateCompetition(Competition course) {
@@ -117,6 +154,56 @@ public class CompetitionService {
 
         }
         return model;
+    }
+
+    public CompetitionImportModel performImport(MultipartFile competitionFile) throws IOException, CompetitionCSVFormatException {
+        File cf = new File(UPLOAD_FOLDER+competitionFile.getOriginalFilename());
+        competitionFile.transferTo(cf);
+        CompetitionImportModel model = new CompetitionImportModel();
+        CSVReader csvReader = new CSVReader(new FileReader(cf));
+        CSV_PART mode = CSV_PART.COMPETITION_HEAD; // 0 - competition header, 1 - competition data, 2 - competitors header, 3 - competitors data
+        String [] nextLine;
+        // TODO: to refactor the code
+        int competitionId = 0;
+
+        while ((nextLine = csvReader.readNext()) != null) {
+            switch (mode) {
+                case COMPETITION_HEAD:  {
+//                    if(nextLine.length != competitionColumnsNumber) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.COMPETITION_HEADER_MISSING_COLUMNS, csvReader.getLinesRead());
+//                    if(hasIncorrectHeadColumnOrder(nextLine, competitionHead)) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.COMPETITION_HEADER_WRONG_COLUMN_ORDER, csvReader.getLinesRead());
+
+                    mode = CSV_PART.COMPETITION_DATA;
+                    break;
+                }
+                case COMPETITION_DATA: {
+//                    if(nextLine.length != competitionColumnsNumber) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.COMPETITION_DATA_MISSING_COLUMNS, csvReader.getLinesRead());
+//                    if(hasIncorrectDataFormat(nextLine,competitionData)) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.COMPETITION_DATA_WRONG_COLUMN_FORMAT, csvReader.getLinesRead());
+                    //setCompetitionData(model, nextLine);
+                    competitionId = createCompetition(nextLine);
+                    mode = CSV_PART.RUNNERS_HEAD;
+                    break;
+                }
+                case RUNNERS_HEAD: {
+//                    if(nextLine.length != runnerColumnsNumber) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.RUNNER_HEADER_MISSING_COLUMNS, csvReader.getLinesRead());
+//                    if(hasIncorrectHeadColumnOrder(nextLine, runnersHead)) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.RUNNER_HEADER_WRONG_COLUMN_ORDER, csvReader.getLinesRead());
+
+
+                    mode = CSV_PART.RUNNERS_DATA;
+                    break;
+                }
+                case RUNNERS_DATA: {
+//                    if(nextLine.length != runnerColumnsNumber) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.RUNNER_DATA_MISSING_COLUMNS, csvReader.getLinesRead());
+//                    if(hasIncorrectDataFormat(nextLine,runnersData)) throw new CompetitionCSVFormatException(CompetitionCSVFormatException.FORMAT_ERROR.RUNNER_DATA_WRONG_COLUMN_FORMAT, csvReader.getLinesRead());
+                    //setRunnerResultData(model, nextLine);
+                    createRunnerAndResult(competitionId, nextLine);
+                    break;
+                }
+                default: break;
+            }
+
+        }
+
+        return null;
     }
 
     private boolean hasIncorrectHeadColumnOrder(String[] line, String[] spec) {
