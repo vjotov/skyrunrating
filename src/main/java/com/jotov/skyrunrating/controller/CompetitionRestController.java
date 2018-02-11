@@ -4,33 +4,32 @@ import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.repository.CompetiotionRepository;
 import com.jotov.skyrunrating.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/competitions")
 public class CompetitionRestController {
     @Autowired
     private CompetitionService competiotionRepository;
 
-    @GetMapping("competitions/")
+    @RequestMapping(method = RequestMethod.GET)
     public List<Competition> getAllCompetitions() {
         //return (List<Competition>) competiotionRepository.findAll();
         return competiotionRepository.getAllCompetitions();
     }
 
-    @GetMapping("competitions/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Competition getCompetition(@PathVariable int id) {
         return competiotionRepository.getCompetition(id);
     }
 
-    @PostMapping("comtetitions/")
-    public void createCompetition(Competition competition) {
+
+    @RequestMapping(method = RequestMethod.POST)
+    public int createCompetition(@RequestBody  Competition competition) {
         competiotionRepository.createCompetition(competition);
-       // return competition.getId();
+        return competition.getId();
     }
 }
