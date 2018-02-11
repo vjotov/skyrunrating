@@ -1,8 +1,8 @@
 package com.jotov.skyrunrating.controller;
 
 import com.jotov.skyrunrating.service.CompetitionCSVFormatException;
-import com.jotov.skyrunrating.service.CompetitionService;
 import com.jotov.skyrunrating.model.CompetitionImportModel;
+import com.jotov.skyrunrating.service.CompetitionUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-
 
 @Controller
 public class UploadController {
 
     @Autowired
-    private CompetitionService competitionService;
+    private CompetitionUploadService competitionUploadService;
 
     @GetMapping("/upload")
     public ModelAndView index(ModelAndView modelAndView) {
@@ -42,8 +40,8 @@ public class UploadController {
             return modelAndView;
         }
         try {
-             ciModel = competitionService.validateImport(competitionFile);
-             ciModel = competitionService.performImport(competitionFile);
+             ciModel = competitionUploadService.validateImport(competitionFile);
+             ciModel = competitionUploadService.performImport(competitionFile);
         } catch (CompetitionCSVFormatException ex) {
             modelAndView.addObject("message", ex.getMessage());
 	    return null;
