@@ -34,7 +34,7 @@ public class CompetitionImportModel {
 
     private ArrayList<RunnerResultImportModel> runnerResults;
 
-    @Bean(scope=DefaultScopes)
+   // @Bean(scope=DefaultScopes)
     public CompetitionImportModel CompetitionImportModelBean() {
         return new CompetitionImportModel();
     }

@@ -39,6 +39,10 @@
             <td th:text="${rs.position}">yes</td>
         </tr>
     </table>
+    <form action="uploadConfirm" >
+        <input th.type="hidden" th:value="${ciModel}" name="ciModel" />
+        <input type="submit" value="Confirm input"/>
+    </form>
 </th:block>
 
 </body>
