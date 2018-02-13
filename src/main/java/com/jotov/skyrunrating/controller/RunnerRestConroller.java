@@ -1,11 +1,12 @@
 package com.jotov.skyrunrating.controller;
 
+import com.jotov.skyrunrating.entity.Result;
 import com.jotov.skyrunrating.entity.Runner;
+import com.jotov.skyrunrating.service.ResultService;
 import com.jotov.skyrunrating.service.RunnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -13,6 +14,9 @@ import java.util.List;
 public class RunnerRestConroller {
     @Autowired
     private RunnerService runnerService;
+
+    @Autowired
+    private ResultService resultService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Runner> getAllRunners() {
@@ -28,5 +32,10 @@ public class RunnerRestConroller {
     public int createRunner(@RequestBody Runner runner) {
         runnerService.createRunner(runner);
         return runner.getId();
+    }
+
+    @RequestMapping(value = "/{id}/results", method = RequestMethod.GET)
+    public List<Result> getResultsByRunner(@PathVariable int id) {
+        return resultService.getResultByRunner(id);
     }
 }
