@@ -6,25 +6,41 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Score {
+public class Score extends AEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private int score;
+    private Long id;
+    private Integer score;
 
-    public Integer getId() {
+    /**
+     *
+     * @return Id
+     */
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    /**
+     * This setter method should only be used by unit tests.
+     * @param id
+     */
+    protected void setId(Long id) {
         this.id = id;
     }
 
-    public int getScore() {
+    /**
+     *
+     * @return The Score of
+     */
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    /**
+     *
+     * @param score
+     */
+    public void setScore(Integer score) {
         this.score = score;
     }
 }

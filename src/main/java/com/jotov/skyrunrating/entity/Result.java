@@ -4,20 +4,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
-public class Result {
+public class Result extends AEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private int position;
-    private int result; // in seconds
+    private Long id;
+    private Integer position;
+    private Integer result; // in seconds
 
-    public Integer getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    /**
+     * This setter method should only be used by unit tests.
+     * @param id
+     */
+    protected void setId(Long id) {
         this.id = id;
     }
 
@@ -34,4 +40,11 @@ public class Result {
     public void setResult(int result) {
         this.result = result;
     }
+
+
+    public Date getModificationTime() {
+        return modificationTime;
+    }
+
+
 }

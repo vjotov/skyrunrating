@@ -6,10 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Runner {
+public class Runner extends AEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private String dateOfBirth;
     private String sex;
@@ -17,9 +17,10 @@ public class Runner {
     private String region;
     private String team;
 
+
     public Runner() { }
 
-    public Runner(int id,
+    public Runner(Long id,
                   String name,
                   String dateOfBirth,
                   String sex,
@@ -35,11 +36,15 @@ public class Runner {
         this.team = team;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    /**
+     * This setter method should only be used by unit tests.
+     * @param id
+     */
+    protected void setId(Long id) {
         this.id = id;
     }
 

@@ -9,10 +9,10 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Competition {
+public class Competition extends AEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private Date date;
     private int maxPoints;
@@ -22,7 +22,7 @@ public class Competition {
 
     public Competition() {}
 
-    public Competition(int id,
+    public Competition(Long id,
                        String name,
                        Date description,
                        int meterDistance,
@@ -42,11 +42,15 @@ public class Competition {
         date = model.getDate();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    /**
+     * This setter method should only be used by unit tests.
+     * @param id
+     */
+    protected void setId(Long id) {
         this.id = id;
     }
 
