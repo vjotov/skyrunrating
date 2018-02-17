@@ -29,7 +29,7 @@ public class RunnerRestConroller {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public int createRunner(@RequestBody Runner runner) {
+    public long createRunner(@RequestBody Runner runner) {
         runnerService.createRunner(runner);
         return runner.getId();
     }

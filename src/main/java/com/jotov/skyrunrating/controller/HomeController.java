@@ -35,8 +35,8 @@ public class HomeController {
         File fl = new File("123.csv");
         file.transferTo(fl);
         //CSVReader reader = new CSVReader(new FileReader(fl));
-      //  List<CompetitionImportModel> beans =
-      //          .withType(CompetitionImportModel.class).build().parse();
+        //  List<CompetitionImportModel> beans =
+        //          .withType(CompetitionImportModel.class).build().parse();
         return "uploadForm";
     }
 
@@ -44,20 +44,20 @@ public class HomeController {
     public ModelAndView Hello() {
         //model.addAttribute("name", "Peter");
         //httpSession.setAttribute("name", "peter 2");
-        Competition competition = new Competition(5,
-        "123", new Date(), 12,13,
-        100,12);
+        //        Competition competition = new Competition(Long5,
+        //      "123", new Date(), 12,13,
+        //    100,12);
 
         ModelAndView mav = new ModelAndView("test");
         //mav.addObject("user", competition);
-        mav.addObject("user",competition);
+        //  mav.addObject("user",competition);
         //RedirectView rv = new RedirectView("/pesho");
         //mav.setView(rv);
         return mav;
     }
 
     //@GetMapping("/")
-    public ModelAndView home(){
+    public ModelAndView home() {
         //TODO - load data for home screen
         return new ModelAndView("base-layout");
     }
