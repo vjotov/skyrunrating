@@ -14,7 +14,6 @@ public class Runner extends AEntity{
     private String city;
     private String region;
     private String team;
-    private Set<Score> scores;
     private Set<Result> results;
 
 
@@ -94,15 +93,6 @@ public class Runner extends AEntity{
 
     public void setTeam(String team) {
         this.team = team;
-    }
-
-    @OneToMany(mappedBy = "Score", cascade = CascadeType.ALL)
-    public Set<Score> getScores() {
-        return scores;
-    }
-
-    public void setScores(Set<Score> scores) {
-        this.scores = scores;
     }
 
     @OneToMany(mappedBy = "Result", cascade = CascadeType.ALL)
