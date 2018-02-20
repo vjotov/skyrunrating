@@ -8,5 +8,5 @@ import java.util.List;
 public interface ResultRepository extends CrudRepository<Result, Integer> {
     // TODO - add @Query annotation -
     // //https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-three-custom-queries-with-query-methods/
-    public List<Result> findByRunner(Integer runnerId);
+    List<Result> findByRunner(Integer runnerId);
 }
