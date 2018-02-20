@@ -1,9 +1,7 @@
 package com.jotov.skyrunrating.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Runner extends AEntity{
@@ -16,6 +14,7 @@ public class Runner extends AEntity{
     private String city;
     private String region;
     private String team;
+    private Set<Result> results;
 
 
     public Runner() { }
@@ -94,5 +93,14 @@ public class Runner extends AEntity{
 
     public void setTeam(String team) {
         this.team = team;
+    }
+
+    @OneToMany(mappedBy = "Result", cascade = CascadeType.ALL)
+    public Set<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(Set<Result> results) {
+        this.results = results;
     }
 }

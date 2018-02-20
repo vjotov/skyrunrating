@@ -1,9 +1,6 @@
 package com.jotov.skyrunrating.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,6 +10,9 @@ public class Result extends AEntity{
     private Long id;
     private Integer position;
     private Integer result; // in seconds
+    private Integer score;
+    private Runner runner;
+    private Competition competition;
 
 
     public Long getId() {
@@ -44,6 +44,58 @@ public class Result extends AEntity{
 
     public Date getModificationTime() {
         return modificationTime;
+    }
+
+    /**
+     *
+     * @return The Score of
+     */
+    public Integer getScore() {
+        return score;
+    }
+
+    /**
+     *
+     * @param score
+     */
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
+    /**
+     *
+     * @return Runner
+     */
+    @ManyToOne
+    @JoinColumn(name = "runner_id")
+    public Runner getRunner() {
+        return runner;
+    }
+
+    /**
+     *
+     * @param runner
+     */
+    public void setRunner(Runner runner) {
+        this.runner = runner;
+    }
+
+    /**
+     *
+     * @return Competition
+     */
+    @ManyToOne
+    @JoinColumn(name = "competition_id")
+    public Competition getCompetition() {
+        return competition;
+    }
+
+    /**
+     *
+     * @param competition
+     */
+    public void setCompetition(Competition competition) {
+        this.competition = competition;
     }
 
 

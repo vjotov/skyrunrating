@@ -27,7 +27,7 @@ public class CompetitionRestController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public int createCompetition(@RequestBody  Competition competition) {
+    public long createCompetition(@RequestBody  Competition competition) {
         competiotionRepository.createCompetition(competition);
         return competition.getId();
     }

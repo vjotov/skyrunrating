@@ -37,7 +37,7 @@ public class CompetitionUploadService {
     private static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH.mm.ss");
     private static final String UPLOAD_FOLDER = "D://tmp//";
 
-    private int createCompetition(String[] line) {
+    private long createCompetition(String[] line) {
         //TODO - create competition and return its ID
         Competition competition = new Competition();
         competition.setName(line[0]);
@@ -53,7 +53,7 @@ public class CompetitionUploadService {
         return competition.getId();
     }
 
-    private void createRunnerAndResult(int competitionId, String[] line) {
+    private void createRunnerAndResult(long competitionId, String[] line) {
 //        RunnerResultImportModel runnerResult = new RunnerResultImportModel();
 //        runnerResult.setPosition(Integer.parseInt(line[0]));
 //        runnerResult.setName(line[1]);
@@ -131,7 +131,7 @@ public class CompetitionUploadService {
         CSV_PART mode = CSV_PART.COMPETITION_HEAD; // 0 - competition header, 1 - competition data, 2 - competitors header, 3 - competitors data
         String [] nextLine;
         // TODO: to refactor the code
-        int competitionId = 0;
+        long competitionId = 0;
 
         while ((nextLine = csvReader.readNext()) != null) {
             switch (mode) {

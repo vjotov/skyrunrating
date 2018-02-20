@@ -2,8 +2,9 @@ package com.jotov.skyrunrating.service;
 
 import com.jotov.skyrunrating.entity.Result;
 import com.jotov.skyrunrating.repository.ResultRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.ArrayList;
 import java.util.List;
