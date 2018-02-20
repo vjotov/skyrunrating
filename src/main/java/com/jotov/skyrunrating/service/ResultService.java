@@ -2,8 +2,8 @@ package com.jotov.skyrunrating.service;
 
 import com.jotov.skyrunrating.entity.Result;
 import com.jotov.skyrunrating.repository.ResultRepository;
-import org.apache.catalina.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class ResultService {
 
     public List<Result> getResultByRunner(int id) {
         //TODO
-        //resultRepository
-        return null;
+        return resultRepository.findByRunner(id);
+
     }
 }
