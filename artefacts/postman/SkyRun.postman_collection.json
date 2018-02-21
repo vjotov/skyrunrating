@@ -1,0 +1,88 @@
+{
+	"info": {
+		"name": "SkyRun",
+		"_postman_id": "f3141fff-ae69-16f2-e2f3-c5260abc914e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Competitions",
+			"description": "",
+			"item": [
+				{
+					"name": "GET competitions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}/competitions/",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"competitions",
+								""
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "GET competitions/{{competition_id}}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}/competitions/{{competition_id}}/",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"competitions",
+								"{{competition_id}}",
+								""
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "POST competitions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\":\"Marathon\",\n  \"description\":\"10.10.2010\",\n    \"maxPoints\":\"100\",\n    \"meterDistance\":\"42195\",\n    \"meterDisplacement\":\"5\",\n    \"secondsRecord\":\"7500\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/competitions/",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"competitions",
+								""
+							]
+						},
+						"description": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
