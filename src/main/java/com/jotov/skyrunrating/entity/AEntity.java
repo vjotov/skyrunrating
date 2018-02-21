@@ -1,13 +1,12 @@
 package com.jotov.skyrunrating.entity;
 
-import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import java.util.Date;
 
-@Entity
+//@Entity
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 public abstract class AEntity {
     protected Date modificationTime;

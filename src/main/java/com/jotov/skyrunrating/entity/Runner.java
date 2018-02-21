@@ -1,7 +1,7 @@
 package com.jotov.skyrunrating.entity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Date;
 
 @Entity
 public class Runner extends AEntity{
@@ -14,8 +14,9 @@ public class Runner extends AEntity{
     private String city;
     private String region;
     private String team;
-    private Set<Result> results;
-
+    //private Set<Result> results;
+    private Date modificationTime;
+    private Date creationTime;
 
     public Runner() { }
 
@@ -95,12 +96,24 @@ public class Runner extends AEntity{
         this.team = team;
     }
 
-    @OneToMany(mappedBy = "Result", cascade = CascadeType.ALL)
-    public Set<Result> getResults() {
-        return results;
+    @PreUpdate
+    public void preUpdate() {
+        this.modificationTime = new Date();
     }
 
-    public void setResults(Set<Result> results) {
-        this.results = results;
+    @PrePersist
+    public void getCreationTime() {
+        Date now = new Date();
+        this.creationTime = now;
+        this.modificationTime = now;
     }
+
+//    @OneToMany(mappedBy = "Result", cascade = CascadeType.ALL)
+//    public Set<Result> getResults() {
+//        return results;
+//    }
+//
+//    public void setResults(Set<Result> results) {
+//        this.results = results;
+//    }
 }

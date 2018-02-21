@@ -39,7 +39,8 @@ public class ResultService {
 
     public List<Result> getResultByRunner(int id) {
         //TODO
-        return resultRepository.findByRunner(id);
+        //return resultRepository.findByRunner(id);
+        return null;
 
     }
 }

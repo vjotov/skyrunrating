@@ -2,14 +2,11 @@ package com.jotov.skyrunrating.entity;
 
 import com.jotov.skyrunrating.model.CompetitionImportModel;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Competition extends AEntity {
+public class Competition {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,6 +16,8 @@ public class Competition extends AEntity {
     private int meterDistance;
     private int meterDisplacement;
     private int secondsRecord;
+    private Date modificationTime;
+    private Date creationTime;
 
     public Competition() {}
 
@@ -100,5 +99,17 @@ public class Competition extends AEntity {
 
     public void setSecondsRecord(int secondsRecord) {
         this.secondsRecord = secondsRecord;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.modificationTime = new Date();
+    }
+
+    @PrePersist
+    public void getCreationTime() {
+        Date now = new Date();
+        this.creationTime = now;
+        this.modificationTime = now;
     }
 }
