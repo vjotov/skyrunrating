@@ -12,7 +12,10 @@ public class Result {
     private Integer result; // in seconds
     private Integer score;
     //private Runner runner;
-    //private Competition competition;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "competition_id", nullable = false)
+    private Competition competition;
     private Date modificationTime;
     private Date creationTime;
 
@@ -49,7 +52,7 @@ public class Result {
 
     /**
      *
-     * @return The Score of
+     * @return The Score
      */
     public Integer getScore() {
         return score;
@@ -91,23 +94,23 @@ public class Result {
 //        this.runner = runner;
 //    }
 //
-//    /**
-//     *
-//     * @return Competition
-//     */
+    /**
+     *
+     * @return Competition
+     */
 //    @ManyToOne
 //    @JoinColumn(name = "competition_id")
-//    public Competition getCompetition() {
-//        return competition;
-//    }
-//
-//    /**
-//     *
-//     * @param competition
-//     */
-//    public void setCompetition(Competition competition) {
-//        this.competition = competition;
-//    }
+    public Competition getCompetition() {
+        return competition;
+    }
+
+    /**
+     *
+     * @param competition
+     */
+    public void setCompetition(Competition competition) {
+        this.competition = competition;
+    }
 
 
 }

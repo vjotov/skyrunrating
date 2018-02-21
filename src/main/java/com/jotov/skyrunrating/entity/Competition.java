@@ -4,6 +4,7 @@ import com.jotov.skyrunrating.model.CompetitionImportModel;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Competition {
@@ -18,6 +19,10 @@ public class Competition {
     private int secondsRecord;
     private Date modificationTime;
     private Date creationTime;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "competition", cascade = CascadeType.ALL)
+    private List<Result> results;
+
 
     public Competition() {}
 
@@ -111,5 +116,13 @@ public class Competition {
         Date now = new Date();
         this.creationTime = now;
         this.modificationTime = now;
+    }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 }
