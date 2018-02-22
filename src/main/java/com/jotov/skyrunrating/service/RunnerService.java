@@ -20,7 +20,7 @@ public class RunnerService {
         return runners;
     }
 
-    public Runner getRunner(Integer id) {
+    public Runner getRunner(Long id) {
         return runnerRepository.findOne(id);
     }
 
@@ -39,7 +39,7 @@ public class RunnerService {
         runnerRepository.save(runner);
     }
 
-    public void deleteRunner(Integer id) {
+    public void deleteRunner(Long id) {
         runnerRepository.delete(id);
     }
 }

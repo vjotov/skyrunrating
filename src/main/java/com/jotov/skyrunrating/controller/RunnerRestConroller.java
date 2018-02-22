@@ -24,7 +24,7 @@ public class RunnerRestConroller {
     }
 
     @RequestMapping(value="/{id}", method = RequestMethod.GET)
-    public Runner getRunner(@PathVariable int id) {
+    public Runner getRunner(@PathVariable long id) {
         return runnerService.getRunner(id);
     }
 

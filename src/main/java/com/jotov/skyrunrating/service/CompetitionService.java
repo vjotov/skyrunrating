@@ -25,7 +25,7 @@ public class CompetitionService {
         return competitions;
     }
 
-    public Competition getCompetition(Integer id) {
+    public Competition getCompetition(Long id) {
         return competiotionRepository.findOne(id);
     }
 
@@ -39,7 +39,7 @@ public class CompetitionService {
         competiotionRepository.save(course);
     }
 
-    public void deleteCompetition(Integer id) {
+    public void deleteCompetition(Long id) {
         competiotionRepository.delete(id);
     }
 

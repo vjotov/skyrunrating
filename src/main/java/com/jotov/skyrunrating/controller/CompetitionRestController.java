@@ -1,7 +1,6 @@
 package com.jotov.skyrunrating.controller;
 
 import com.jotov.skyrunrating.entity.Competition;
-import com.jotov.skyrunrating.repository.CompetiotionRepository;
 import com.jotov.skyrunrating.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ public class CompetitionRestController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Competition getCompetition(@PathVariable int id) {
+    public Competition getCompetition(@PathVariable long id) {
         return competiotionRepository.getCompetition(id);
     }
 

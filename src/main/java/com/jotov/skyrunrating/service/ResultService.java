@@ -1,5 +1,7 @@
 package com.jotov.skyrunrating.service;
 
+import com.jotov.skyrunrating.dto.CreateResultRequest;
+import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.entity.Result;
 import com.jotov.skyrunrating.repository.ResultRepository;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.List;
 public class ResultService {
     @Autowired
     private ResultRepository resultRepository;
+    @Autowired
+    private CompetitionService competitionService;
 
     public List<Result> getAllCompetitions() {
         List<Result> results = new ArrayList<>();
@@ -21,19 +25,25 @@ public class ResultService {
         return results;
     }
 
-    public Result getResult(Integer id) {
+    public Result getResult(Long id) {
         return resultRepository.findOne(id);
     }
 
-    public void createResult(Result result) {
+    public Result createResult(CreateResultRequest resultDTO) {
+        Competition competition = competitionService.getCompetition(resultDTO.getCompetitionId());
+        Result result = new Result(resultDTO.getPosition(),
+                resultDTO.getResult(),
+                resultDTO.getScore(),
+                competition);
         resultRepository.save(result);
+        return result;
     }
 
     public void updateResult(Result result) {
         resultRepository.save(result);
     }
 
-    public void deleteResult(Integer id) {
+    public void deleteResult(Long id) {
         resultRepository.delete(id);
     }
 

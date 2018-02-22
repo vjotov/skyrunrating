@@ -19,6 +19,24 @@ public class Result {
     private Date modificationTime;
     private Date creationTime;
 
+    public Result() { super(); }
+
+    /**
+     *
+     * @param position
+     * @param result
+     * @param score
+     * @param competition
+     */
+    public Result(Integer position,
+                  Integer result,
+                  Integer score,
+                  Competition competition) {
+        this.position = position;
+        this.result = result;
+        this.score = score;
+        this.competition = competition;
+    }
     public Long getId() {
         return id;
     }

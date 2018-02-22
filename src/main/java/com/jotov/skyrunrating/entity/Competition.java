@@ -1,5 +1,6 @@
 package com.jotov.skyrunrating.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jotov.skyrunrating.model.CompetitionImportModel;
 
 import javax.persistence.*;
@@ -118,6 +119,9 @@ public class Competition {
         this.modificationTime = now;
     }
 
+    //TODO: https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring
+    //TODO: https://stackoverflow.com/questions/31465440/recursive-json-view-of-an-entity-with-one-to-many-relationship-in-rest-controlle
+    @JsonIgnore
     public List<Result> getResults() {
         return results;
     }
