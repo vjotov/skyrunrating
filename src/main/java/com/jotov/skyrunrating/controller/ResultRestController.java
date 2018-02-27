@@ -15,13 +15,13 @@ public class ResultRestController {
 
     @Autowired
     private ResultService resultService;
-    @Autowired
-    private CompetitionService competitionService;
+    //@Autowired
+    //private CompetitionService competitionService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Result> getAllResults() {
         //return (List<Competition>) resultService.findAll();
-        return resultService.getAllCompetitions();
+        return resultService.getAllResults();
     }
 
     //@RequestMapping(value = "/{id}/", method = RequestMethod.GET)
@@ -31,11 +31,12 @@ public class ResultRestController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public long createCompetition(@RequestBody CreateResultRequest resultDTO) {
-
-
+    public Long createCompetition(@RequestBody CreateResultRequest resultDTO) {
         Result result = resultService.createResult(resultDTO);
-        return result.getId();
+        if (result == null)
+            return null;
+        else
+            return result.getId();
     }
 
 }

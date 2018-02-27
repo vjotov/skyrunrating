@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Runner extends AEntity{
+public class Runner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -96,13 +96,17 @@ public class Runner extends AEntity{
         this.team = team;
     }
 
+    public Date getCreationTime() { return creationTime; }
+
+    public Date getModificationTime() { return modificationTime; }
+
     @PreUpdate
     public void preUpdate() {
         this.modificationTime = new Date();
     }
 
     @PrePersist
-    public void getCreationTime() {
+    public void prePersist() {
         Date now = new Date();
         this.creationTime = now;
         this.modificationTime = now;

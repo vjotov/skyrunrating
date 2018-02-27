@@ -5,7 +5,6 @@ public class CreateResultRequest {
     private Long competitionId;
     private Integer position;
     private Integer result; // in seconds
-    private Integer score;
 
     public Long getRunnerId() {
         return runnerId;
@@ -39,11 +38,4 @@ public class CreateResultRequest {
         this.result = result;
     }
 
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
 }

@@ -22,7 +22,7 @@ public class Competition {
     private Date creationTime;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "competition", cascade = CascadeType.ALL)
-    @JsonIgnore
+    //@JsonIgnore
     private List<Result> results;
 
 
@@ -108,13 +108,17 @@ public class Competition {
         this.secondsRecord = secondsRecord;
     }
 
+    public Date getCreationTime() { return creationTime; }
+
+    public Date getModificationTime() { return modificationTime; }
+
     @PreUpdate
     public void preUpdate() {
         this.modificationTime = new Date();
     }
 
     @PrePersist
-    public void getCreationTime() {
+    public void prePersist() {
         Date now = new Date();
         this.creationTime = now;
         this.modificationTime = now;
@@ -128,5 +132,9 @@ public class Competition {
 
     public void setResults(List<Result> results) {
         this.results = results;
+    }
+
+    public void addResult(Result result) {
+        this.results.add(result);
     }
 }

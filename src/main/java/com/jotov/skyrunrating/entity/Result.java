@@ -1,5 +1,7 @@
 package com.jotov.skyrunrating.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,9 +15,11 @@ public class Result {
     private Integer score;
     //private Runner runner;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "competition_id", nullable = false)
+    @JsonIgnore
     private Competition competition;
+
     private Date modificationTime;
     private Date creationTime;
 
@@ -25,16 +29,13 @@ public class Result {
      *
      * @param position
      * @param result
-     * @param score
      * @param competition
      */
     public Result(Integer position,
                   Integer result,
-                  Integer score,
                   Competition competition) {
         this.position = position;
         this.result = result;
-        this.score = score;
         this.competition = competition;
     }
     public Long getId() {
@@ -68,6 +69,8 @@ public class Result {
         return modificationTime;
     }
 
+    public Date getCreationTime() { return creationTime; }
+
     /**
      *
      * @return The Score
@@ -83,13 +86,14 @@ public class Result {
     public void setScore(Integer score) {
         this.score = score;
     }
+
     @PreUpdate
     public void preUpdate() {
         this.modificationTime = new Date();
     }
 
     @PrePersist
-    public void getCreationTime() {
+    public void prePersist() {
         Date now = new Date();
         this.creationTime = now;
         this.modificationTime = now;
@@ -116,8 +120,7 @@ public class Result {
      *
      * @return Competition
      */
-//    @ManyToOne
-//    @JoinColumn(name = "competition_id")
+
     public Competition getCompetition() {
         return competition;
     }
@@ -130,5 +133,8 @@ public class Result {
         this.competition = competition;
     }
 
-
+    @Transient
+    public Long getCompetitionId() {
+        return competition.getId();
+    }
 }

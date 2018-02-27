@@ -27,7 +27,7 @@
 								""
 							]
 						},
-						"description": null
+						"description": ""
 					},
 					"response": []
 				},
@@ -49,7 +49,7 @@
 								""
 							]
 						},
-						"description": null
+						"description": ""
 					},
 					"response": []
 				},
@@ -65,7 +65,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\":\"Marathon\",\n  \"description\":\"10.10.2010\",\n    \"maxPoints\":\"100\",\n    \"meterDistance\":\"42195\",\n    \"meterDisplacement\":\"5\",\n    \"secondsRecord\":\"7500\"\n}"
+							"raw": "{\n\t\"name\":\"Marathon\",\n\t\"description\":\"10.10.2010\",\n    \"maxPoints\":\"100\",\n    \"meterDistance\":\"42195\",\n    \"meterDisplacement\":\"5\",\n    \"secondsRecord\":\"7500\"\n}"
 						},
 						"url": {
 							"raw": "http://{{host}}/competitions/",
@@ -75,6 +75,62 @@
 							],
 							"path": [
 								"competitions",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Results",
+			"description": "",
+			"item": [
+				{
+					"name": "GET results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{host}}/result/",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"result",
+								""
+							]
+						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "POST results",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"runnerId\":\"1\",\n  \"competitionId\":\"1\",\n  \"position\":\"1\",\n  \"result\":\"123\"\n}"
+						},
+						"url": {
+							"raw": "http://{{host}}/result/",
+							"protocol": "http",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"result",
 								""
 							]
 						},

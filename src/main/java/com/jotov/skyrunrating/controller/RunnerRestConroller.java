@@ -1,5 +1,6 @@
 package com.jotov.skyrunrating.controller;
 
+import com.jotov.skyrunrating.dto.CreateRunnerRequest;
 import com.jotov.skyrunrating.entity.Result;
 import com.jotov.skyrunrating.entity.Runner;
 import com.jotov.skyrunrating.service.ResultService;
@@ -29,7 +30,8 @@ public class RunnerRestConroller {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public long createRunner(@RequestBody Runner runner) {
+    public long createRunner(@RequestBody CreateRunnerRequest runnetDTO) {
+        Runner runner = CreateRunnerRequest.getRunner(runnetDTO);
         runnerService.createRunner(runner);
         return runner.getId();
     }
