@@ -20,6 +20,16 @@ public class Runner {
 
     public Runner() { }
 
+    /**
+     *
+     * @param id
+     * @param name
+     * @param dateOfBirth
+     * @param sex
+     * @param city
+     * @param region
+     * @param team
+     */
     public Runner(Long id,
                   String name,
                   String dateOfBirth,

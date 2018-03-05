@@ -30,8 +30,8 @@ public class RunnerRestConroller {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public long createRunner(@RequestBody CreateRunnerRequest runnetDTO) {
-        Runner runner = CreateRunnerRequest.getRunner(runnetDTO);
+    public long createRunner(@RequestBody CreateRunnerRequest runnerDTO) {
+        Runner runner = CreateRunnerRequest.getRunner(runnerDTO);
         runnerService.createRunner(runner);
         return runner.getId();
     }
