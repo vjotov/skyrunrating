@@ -2,6 +2,7 @@ package com.jotov.skyrunrating.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Runner {
@@ -14,7 +15,10 @@ public class Runner {
     private String city;
     private String region;
     private String team;
-    //private Set<Result> results;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "runner", cascade = CascadeType.ALL)
+    private List<Result> results;
+
     private Date modificationTime;
     private Date creationTime;
 

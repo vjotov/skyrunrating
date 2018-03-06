@@ -13,7 +13,11 @@ public class Result {
     private Integer position;
     private Integer result; // in seconds
     private Integer score;
-    //private Runner runner;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "runner_id", nullable = false)
+    @JsonIgnore
+    private Runner runner;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "competition_id", nullable = false)
@@ -38,18 +42,27 @@ public class Result {
         this.result = result;
         this.competition = competition;
     }
+
+    /**
+     *
+     * @return the id of the result
+     */
     public Long getId() {
         return id;
     }
 
     /**
      * This setter method should only be used by unit tests.
-     * @param id
+     * @param id new id of the result
      */
     protected void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @return the position of the runner in the competition.
+     */
     public int getPosition() {
         return position;
     }
@@ -136,5 +149,10 @@ public class Result {
     @Transient
     public Long getCompetitionId() {
         return competition.getId();
+    }
+
+    @Transient
+    public Long getRunnerId() {
+        return runner.getId();
     }
 }

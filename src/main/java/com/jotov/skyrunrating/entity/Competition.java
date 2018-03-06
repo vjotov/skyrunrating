@@ -22,7 +22,6 @@ public class Competition {
     private Date creationTime;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "competition", cascade = CascadeType.ALL)
-    //@JsonIgnore
     private List<Result> results;
 
 

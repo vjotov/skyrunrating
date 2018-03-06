@@ -16,6 +16,7 @@ public class CompetitionService {
     @Autowired
     private RunnerService runnerService;
 
+    @Autowired
     private ResultService resultService;
 
     public List<Competition> getAllCompetitions() {
