@@ -7,7 +7,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +38,7 @@ public class CompetitionRestController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CompetitionDTO getCompetition(@PathVariable long id) {
-        return new CompetitionDTO(competitionService.getCompetition(id));
+        return convertToDto(competitionService.getCompetition(id));
     }
 
 
@@ -51,8 +50,14 @@ public class CompetitionRestController {
     @RequestMapping(method = RequestMethod.POST)
     public long createCompetition(@RequestBody  CompetitionDTO competitionDto) {
 
-        Competition competition = competitionService.createCompetition(competitionDto);
+        Competition competition = convertToEntity(competitionDto);
+        competitionService.createCompetition(competition);
         return competition.getId();
+    }
+
+    private Competition convertToEntity(CompetitionDTO competitionDto) {
+        Competition competition = modelMapper.map(competitionDto, Competition.class);;
+        return competition;
     }
 
     private CompetitionDTO convertToDto(Competition competition) {

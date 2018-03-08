@@ -39,18 +39,6 @@ public class CompetitionDTO {
         this.secondsRecord = secondsRecord;
     }
 
-    public CompetitionDTO(Competition competition) {
-        this.id = competition.getId();
-        this.name = competition.getName();
-        this.date = competition.getDate();
-        this.meterDistance = competition.getMeterDistance();
-        this.meterDisplacement =competition.getMeterDisplacement();
-        this.maxPoints = competition.getMaxPoints();
-        this.secondsRecord = competition.getSecondsRecord();
-        this.modificationTime = competition.getModificationTime();
-        this.creationTime = competition.getCreationTime();
-    }
-
     public Long getId() {
         return id;
     }

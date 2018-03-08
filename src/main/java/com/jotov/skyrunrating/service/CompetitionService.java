@@ -31,12 +31,6 @@ public class CompetitionService {
         return competiotionRepository.findOne(id);
     }
 
-    public Competition createCompetition(CompetitionDTO competitionDto) {
-        Competition competition = new Competition(competitionDto);
-        competiotionRepository.save(competition);
-        return competition;
-    }
-
     public Competition createCompetition(Competition competition) {
         competiotionRepository.save(competition);
         return competition;
