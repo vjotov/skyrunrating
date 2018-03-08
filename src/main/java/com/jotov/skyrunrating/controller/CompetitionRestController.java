@@ -3,11 +3,13 @@ package com.jotov.skyrunrating.controller;
 import com.jotov.skyrunrating.dto.CompetitionDTO;
 import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.service.CompetitionService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/competitions")
@@ -15,16 +17,19 @@ public class CompetitionRestController {
     @Autowired
     private CompetitionService competitionService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     /**
      *
      * @return List of all competitions in the system
      */
     @RequestMapping(method = RequestMethod.GET)
     public List<CompetitionDTO> getAllCompetitions() {
-        List<CompetitionDTO> competitionsDTO = new ArrayList<> ();
-        competitionService.getAllCompetitions()
-                .forEach((competition) -> competitionsDTO.add(new CompetitionDTO(competition)));
-        return competitionsDTO;
+        List<Competition> competitions = competitionService.getAllCompetitions();
+        return competitions.stream()
+                .map(competition -> convertToDto(competition))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -45,7 +50,13 @@ public class CompetitionRestController {
      */
     @RequestMapping(method = RequestMethod.POST)
     public long createCompetition(@RequestBody  CompetitionDTO competitionDto) {
+
         Competition competition = competitionService.createCompetition(competitionDto);
         return competition.getId();
+    }
+
+    private CompetitionDTO convertToDto(Competition competition) {
+        CompetitionDTO competitionDTO = modelMapper.map(competition, CompetitionDTO.class);
+        return competitionDTO;
     }
 }

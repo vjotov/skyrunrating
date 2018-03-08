@@ -24,7 +24,6 @@ public class ResultRestController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<ResultDTO> getAllResults() {
-        //return (List<Competition>) resultService.findAll();
         List<Result> results = resultService.getAllResults();
         return results.stream()
                 .map(result -> convertToDto(result))
