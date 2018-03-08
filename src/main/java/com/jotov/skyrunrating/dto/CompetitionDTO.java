@@ -1,16 +1,13 @@
-package com.jotov.skyrunrating.entity;
+package com.jotov.skyrunrating.dto;
 
-import com.jotov.skyrunrating.dto.CompetitionDTO;
+import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.model.CompetitionImportModel;
 
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-public class Competition {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class CompetitionDTO {
     private Long id;
     private String name;
     private Date date;
@@ -21,42 +18,37 @@ public class Competition {
     private Date modificationTime;
     private Date creationTime;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "competition", cascade = CascadeType.ALL)
-    private List<Result> results;
+    //private List<ResultDTO> results;
 
 
-    public Competition() {}
+    public CompetitionDTO() {}
 
-    public Competition(Long id,
+    public CompetitionDTO(Long id,
                        String name,
-                       Date description,
+                       Date date,
                        int meterDistance,
                        int meterDisplacement,
                        int maxPoints,
                        int secondsRecord) {
         this.id = id;
         this.name = name;
-        date = description;
+        this.date = date;
         this.meterDistance = meterDistance;
         this.meterDisplacement = meterDisplacement;
         this.maxPoints = maxPoints;
         this.secondsRecord = secondsRecord;
     }
-    public Competition(CompetitionImportModel model) {
-        name = model.getName();
-        date = model.getDate();
-    }
 
-    public Competition(CompetitionDTO competitionDTO) {
-        this.id = competitionDTO.getId();
-        this.name = competitionDTO.getName();
-        this.date = competitionDTO.getDate();
-        this.meterDistance = competitionDTO.getMeterDistance();
-        this.meterDisplacement = competitionDTO.getMeterDisplacement();
-        this.maxPoints = competitionDTO.getMaxPoints();
-        this.secondsRecord = competitionDTO.getSecondsRecord();
-        this.modificationTime = competitionDTO.getModificationTime();
-        this.creationTime = competitionDTO.getCreationTime();
+    public CompetitionDTO(Competition competition) {
+        this.id = competition.getId();
+        this.name = competition.getName();
+        this.date = competition.getDate();
+        this.meterDistance = competition.getMeterDistance();
+        this.meterDisplacement =competition.getMeterDisplacement();
+        this.maxPoints = competition.getMaxPoints();
+        this.secondsRecord = competition.getSecondsRecord();
+        this.modificationTime = competition.getModificationTime();
+        this.creationTime = competition.getCreationTime();
     }
 
     public Long getId() {
@@ -122,30 +114,4 @@ public class Competition {
     public Date getCreationTime() { return creationTime; }
 
     public Date getModificationTime() { return modificationTime; }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.modificationTime = new Date();
-    }
-
-    @PrePersist
-    public void prePersist() {
-        Date now = new Date();
-        this.creationTime = now;
-        this.modificationTime = now;
-    }
-
-    //TODO: https://spring.io/blog/2014/12/02/latest-jackson-integration-improvements-in-spring
-    //TODO: https://stackoverflow.com/questions/31465440/recursive-json-view-of-an-entity-with-one-to-many-relationship-in-rest-controlle
-    public List<Result> getResults() {
-        return results;
-    }
-
-    public void setResults(List<Result> results) {
-        this.results = results;
-    }
-
-    public void addResult(Result result) {
-        this.results.add(result);
-    }
 }

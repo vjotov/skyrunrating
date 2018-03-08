@@ -49,6 +49,7 @@ public class CompetitionUploadService {
             competition.setDate(dateFormat.parse(line[5]));
         } catch (ParseException e) {competition.setDate(new Date());}
 
+
         competitionService.createCompetition(competition);
         return competition.getId();
     }

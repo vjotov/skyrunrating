@@ -1,5 +1,6 @@
 package com.jotov.skyrunrating.service;
 
+import com.jotov.skyrunrating.dto.CompetitionDTO;
 import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.repository.CompetiotionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,15 @@ public class CompetitionService {
         return competiotionRepository.findOne(id);
     }
 
-    public void createCompetition(Competition competition) {
+    public Competition createCompetition(CompetitionDTO competitionDto) {
+        Competition competition = new Competition(competitionDto);
         competiotionRepository.save(competition);
+        return competition;
+    }
+
+    public Competition createCompetition(Competition competition) {
+        competiotionRepository.save(competition);
+        return competition;
     }
 
 
