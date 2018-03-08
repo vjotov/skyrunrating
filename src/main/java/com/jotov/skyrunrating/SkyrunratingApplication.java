@@ -1,6 +1,7 @@
 package com.jotov.skyrunrating;
 
 import org.apache.coyote.http11.AbstractHttp11Protocol;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.tomcat.TomcatConnectorCustomizer;
@@ -52,5 +53,10 @@ public class SkyrunratingApplication {
 			System.out.println ( "ERROR - Unexpected input." );
 		}
 		return d;
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 }
