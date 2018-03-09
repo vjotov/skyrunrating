@@ -10,6 +10,10 @@ public class ResultDTO {
     private String runner;
     private String competition;
 
+    private Long runnerId;
+    private Long competitionId;
+
+
     public Long getId() {
         return id;
     }
@@ -56,5 +60,21 @@ public class ResultDTO {
 
     public void setCompetition(String competition) {
         this.competition = competition;
+    }
+
+    public Long getRunnerId() {
+        return runnerId;
+    }
+
+    public void setRunnerId(Long runnerId) {
+        this.runnerId = runnerId;
+    }
+
+    public Long getCompetitionId() {
+        return competitionId;
+    }
+
+    public void setCompetitionId(Long competitionId) {
+        this.competitionId = competitionId;
     }
 }

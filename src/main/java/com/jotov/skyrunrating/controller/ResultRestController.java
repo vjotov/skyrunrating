@@ -2,6 +2,7 @@ package com.jotov.skyrunrating.controller;
 
 import com.jotov.skyrunrating.dto.CreateResultRequest;
 import com.jotov.skyrunrating.dto.ResultDTO;
+import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.entity.Result;
 import com.jotov.skyrunrating.service.CompetitionService;
 import com.jotov.skyrunrating.service.ResultService;
@@ -18,6 +19,9 @@ public class ResultRestController {
 
     @Autowired
     private ResultService resultService;
+
+    @Autowired
+    private CompetitionService competitionService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -37,8 +41,12 @@ public class ResultRestController {
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public Long createCompetition(@RequestBody CreateResultRequest resultDTO) {
-        Result result = resultService.createResult(resultDTO);
+    public Long createResult(@RequestBody ResultDTO resultDTO) {
+        Result result = convertToEntity(resultDTO);
+        Competition competition = competitionService.getCompetition(result.getCompetitionId());
+        //TODO - to check possible error!!!
+        competition.addResult(result);
+        resultService.createResult(result);
         if (result == null)
             return null;
         else
@@ -50,6 +58,12 @@ public class ResultRestController {
         resultDTO.setRunner(result.getRunner().getName());
         resultDTO.setCompetition(result.getCompetition().getId().toString());
         return resultDTO;
+    }
+
+    private Result convertToEntity(ResultDTO resultDTO) {
+        Result result = modelMapper.map(resultDTO, Result.class);
+
+        return result;
     }
 
 }

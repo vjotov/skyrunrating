@@ -16,8 +16,7 @@ import java.util.List;
 public class ResultService {
     @Autowired
     private ResultRepository resultRepository;
-    @Autowired
-    private CompetiotionRepository competiotionRepository;
+
     @Autowired
     private CompetitionService competitionService;
 
@@ -32,17 +31,22 @@ public class ResultService {
         return resultRepository.findOne(id);
     }
 
-    public Result createResult(CreateResultRequest resultDTO) {
-        Competition competition = competitionService.getCompetition(resultDTO.getCompetitionId());
-        if (competition == null) return null;
-        Result result = new Result(resultDTO.getPosition(),
-                resultDTO.getResult(),
-                competition);
-        competition.addResult(result);
+    public Result createResult(Result result) {
+        if (result.getCompetition() == null) return null;
         resultRepository.save(result);
-        //competiotionRepository.save(competition);
         return result;
     }
+//    public Result createResult(CreateResultRequest resultDTO) {
+//        Competition competition = competitionService.getCompetition(resultDTO.getCompetitionId());
+//        if (competition == null) return null;
+//        Result result = new Result(resultDTO.getPosition(),
+//                resultDTO.getResult(),
+//                competition);
+//        competition.addResult(result);
+//        resultRepository.save(result);
+//        //competiotionRepository.save(competition);
+//        return result;
+//    }
 
     public void updateResult(Result result) {
         resultRepository.save(result);

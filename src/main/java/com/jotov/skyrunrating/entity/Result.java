@@ -27,6 +27,11 @@ public class Result {
     private Date modificationTime;
     private Date creationTime;
 
+    @Transient
+    private Long runnerId;
+    @Transient
+    private Long competitionId;
+
     public Result() { super(); }
 
     /**
@@ -152,5 +157,13 @@ public class Result {
     @Transient
     public Long getRunnerId() {
         return runner.getId();
+    }
+
+    public void setRunnerId(Long runnerId) {
+        this.runnerId = runnerId;
+    }
+
+    public void setCompetitionId(Long competitionId) {
+        this.competitionId = competitionId;
     }
 }
