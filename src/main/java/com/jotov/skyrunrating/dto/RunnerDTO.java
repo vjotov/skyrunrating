@@ -1,25 +1,22 @@
 package com.jotov.skyrunrating.dto;
 
-import com.jotov.skyrunrating.entity.Runner;
+public class RunnerDTO {
 
-public class CreateRunnerRequest {
-    public static Runner getRunner(CreateRunnerRequest runnerDTO) {;
-        Runner runner = new Runner(null,
-                runnerDTO.name,
-                runnerDTO.dateOfBirth,
-                runnerDTO.sex,
-                runnerDTO.city,
-                runnerDTO.region,
-                runnerDTO.team);
-        return runner;
-    }
-
+    private Long id;
     private String name;
     private String dateOfBirth;
     private String sex;
     private String city;
     private String region;
     private String team;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

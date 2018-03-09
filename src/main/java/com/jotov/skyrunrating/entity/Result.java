@@ -111,24 +111,22 @@ public class Result {
         this.creationTime = now;
         this.modificationTime = now;
     }
-//    /**
-//     *
-//     * @return Runner
-//     */
-//    @ManyToOne
-//    @JoinColumn(name = "runner_id")
-//    public Runner getRunner() {
-//        return runner;
-//    }
-//
-//    /**
-//     *
-//     * @param runner
-//     */
-//    public void setRunner(Runner runner) {
-//        this.runner = runner;
-//    }
-//
+    /**
+     *
+     * @return Runner
+     */
+    public Runner getRunner() {
+        return runner;
+    }
+
+    /**
+     *
+     * @param runner
+     */
+    public void setRunner(Runner runner) {
+        this.runner = runner;
+    }
+
     /**
      *
      * @return Competition

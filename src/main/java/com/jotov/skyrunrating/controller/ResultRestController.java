@@ -47,6 +47,8 @@ public class ResultRestController {
 
     private ResultDTO convertToDto(Result result) {
         ResultDTO resultDTO = modelMapper.map(result, ResultDTO.class);
+        resultDTO.setRunner(result.getRunner().getName());
+        resultDTO.setCompetition(result.getCompetition().getId().toString());
         return resultDTO;
     }
 
