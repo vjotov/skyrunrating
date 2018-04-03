@@ -3,8 +3,10 @@ package com.jotov.skyrunrating.controller;
 import com.jotov.skyrunrating.dto.CompetitionDTO;
 import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.service.CompetitionService;
+import com.jotov.skyrunrating.util.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,7 +40,13 @@ public class CompetitionRestController {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public CompetitionDTO getCompetition(@PathVariable long id) {
-        return convertToDto(competitionService.getCompetition(id));
+        Competition competition = competitionService.getCompetition(id);
+        if (competition==null)
+            //return null;
+
+            throw (new NotFoundException("Competition not found"));
+        else
+            return convertToDto(competition);
     }
 
 
@@ -61,7 +69,11 @@ public class CompetitionRestController {
     }
 
     private CompetitionDTO convertToDto(Competition competition) {
-        CompetitionDTO competitionDTO = modelMapper.map(competition, CompetitionDTO.class);
-        return competitionDTO;
+        try {
+            CompetitionDTO competitionDTO = modelMapper.map(competition, CompetitionDTO.class);
+            return competitionDTO;
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
     }
 }
