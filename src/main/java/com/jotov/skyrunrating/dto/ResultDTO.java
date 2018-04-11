@@ -1,16 +1,33 @@
 package com.jotov.skyrunrating.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+
 public class ResultDTO {
 
+    @NotNull(groups = Existing.class)
+    @Null(groups = New.class)
     private Long id;
+
+    @NotNull(
+            message = "Position is required",
+            groups = {Existing.class, New.class}
+    )
     private Integer position;
+
+    @NotNull(groups = {Existing.class, New.class})
     private Integer result; // in seconds
+
+    @NotNull(groups = Existing.class)
+    @Null(groups = New.class)
     private Integer score;
 
     private String runner;
     private String competition;
 
+    @NotNull(groups = {Existing.class, New.class})
     private Long runnerId;
+    @NotNull(groups = {Existing.class, New.class})
     private Long competitionId;
 
 
@@ -77,4 +94,8 @@ public class ResultDTO {
     public void setCompetitionId(Long competitionId) {
         this.competitionId = competitionId;
     }
+
+    public interface Existing {}
+
+    public interface New {}
 }

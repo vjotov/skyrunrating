@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 public class CompetitionDTO {
+    //TODO https://lmonkiewicz.com/programming/get-noticed-2017/spring-boot-rest-request-validation/
+
     private Long id;
     private String name;
     private Date date;
