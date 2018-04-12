@@ -16,7 +16,7 @@ public class CompetitionDTO {
     @NotNull(groups = {Existing.class, New.class})
     private String name;
 
-    @NotNull(groups = {Existing.class, New.class})
+    // TODO @NotNull(groups = {Existing.class, New.class})
     private Date date;
 
     @NotNull(groups = {Existing.class, New.class})

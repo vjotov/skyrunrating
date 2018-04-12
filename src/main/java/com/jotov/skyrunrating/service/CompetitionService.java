@@ -1,8 +1,7 @@
 package com.jotov.skyrunrating.service;
 
-import com.jotov.skyrunrating.dto.CompetitionDTO;
 import com.jotov.skyrunrating.entity.Competition;
-import com.jotov.skyrunrating.repository.CompetiotionRepository;
+import com.jotov.skyrunrating.repository.CompetitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @Service
 public class CompetitionService {
     @Autowired
-    private CompetiotionRepository competiotionRepository;
+    private CompetitionRepository competiotionRepository;
 
     @Autowired
     private RunnerService runnerService;
@@ -26,6 +25,7 @@ public class CompetitionService {
     }
 
     public Competition getCompetition(Long id) {
+        if (id == null) throw new IllegalArgumentException("An identifier is required to retrieve an instance of Competition");
         return competiotionRepository.findOne(id);
     }
 

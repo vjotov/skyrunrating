@@ -21,6 +21,7 @@ public class RunnerService {
     }
 
     public Runner getRunner(Long id) {
+        if (id == null) throw new IllegalArgumentException("An identifier is required to retrieve an instance of Competition");
         return runnerRepository.findOne(id);
     }
 

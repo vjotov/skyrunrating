@@ -1,6 +1,6 @@
 package com.jotov.skyrunrating;
 
-//import com.jotov.skyrunrating.repository.CompetiotionRepository;
+//import com.jotov.skyrunrating.repository.CompetitionRepository;
 //import com.jotov.skyrunrating.service.CompetitionService;
 //import org.junit.Before;
 //
@@ -8,13 +8,13 @@ package com.jotov.skyrunrating;
 
 public class CompetitionServiceTest {
 //    private CompetitionService competitionService;
-//    private CompetiotionRepository competitionRepositoryMock;
+//    private CompetitionRepository competitionRepositoryMock;
 //
 //    @Before
 //    public void setUp(){
 //        competitionService = new  CompetitionService();
 //
-//        competitionRepositoryMock = mock(CompetiotionRepository.class);
+//        competitionRepositoryMock = mock(CompetitionRepository.class);
 //       // competitionService.setCompetiotionRepository(competitionRepositoryMock);
 //    }
 

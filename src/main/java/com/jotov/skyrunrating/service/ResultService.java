@@ -1,9 +1,6 @@
 package com.jotov.skyrunrating.service;
 
-import com.jotov.skyrunrating.dto.CreateResultRequest;
-import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.entity.Result;
-import com.jotov.skyrunrating.repository.CompetiotionRepository;
 import com.jotov.skyrunrating.repository.ResultRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
