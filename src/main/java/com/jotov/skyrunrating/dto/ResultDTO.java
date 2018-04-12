@@ -1,7 +1,11 @@
 package com.jotov.skyrunrating.dto;
 
+import com.jotov.skyrunrating.dto.context.Existing;
+import com.jotov.skyrunrating.dto.context.New;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import java.util.Date;
 
 public class ResultDTO {
 
@@ -29,6 +33,10 @@ public class ResultDTO {
     private Long runnerId;
     @NotNull(groups = {Existing.class, New.class})
     private Long competitionId;
+
+    private Date modificationTime;
+    private Date creationTime;
+
 
 
     public Long getId() {
@@ -95,7 +103,6 @@ public class ResultDTO {
         this.competitionId = competitionId;
     }
 
-    public interface Existing {}
-
-    public interface New {}
+    public Date getCreationTime() { return creationTime; }
+    public Date getModificationTime() { return modificationTime; }
 }

@@ -1,22 +1,36 @@
 package com.jotov.skyrunrating.dto;
 
-import com.jotov.skyrunrating.entity.Competition;
-import com.jotov.skyrunrating.model.CompetitionImportModel;
-
-import java.util.ArrayList;
+import com.jotov.skyrunrating.dto.context.Existing;
+import com.jotov.skyrunrating.dto.context.New;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.Date;
-import java.util.List;
+
 
 public class CompetitionDTO {
     //TODO https://lmonkiewicz.com/programming/get-noticed-2017/spring-boot-rest-request-validation/
-
+    @NotNull(groups = Existing.class)
+    @Null(groups = New.class)
     private Long id;
+
+    @NotNull(groups = {Existing.class, New.class})
     private String name;
+
+    @NotNull(groups = {Existing.class, New.class})
     private Date date;
+
+    @NotNull(groups = {Existing.class, New.class})
     private int maxPoints;
+
+    @NotNull(groups = {Existing.class, New.class})
     private int meterDistance;
+
+    @NotNull(groups = {Existing.class, New.class})
     private int meterDisplacement;
+
+    @NotNull(groups = {Existing.class, New.class})
     private int secondsRecord;
+
     private Date modificationTime;
     private Date creationTime;
 

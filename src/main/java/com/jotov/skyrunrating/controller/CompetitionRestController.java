@@ -1,12 +1,15 @@
 package com.jotov.skyrunrating.controller;
 
 import com.jotov.skyrunrating.dto.CompetitionDTO;
+import com.jotov.skyrunrating.dto.context.Existing;
+import com.jotov.skyrunrating.dto.context.New;
 import com.jotov.skyrunrating.entity.Competition;
 import com.jotov.skyrunrating.service.CompetitionService;
 import com.jotov.skyrunrating.util.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ResourceNotFoundException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -56,10 +59,22 @@ public class CompetitionRestController {
      * @return the ID of the created competition
      */
     @RequestMapping(method = RequestMethod.POST)
-    public long createCompetition(@RequestBody  CompetitionDTO competitionDto) {
+    public long createCompetition(@Validated(New.class) @RequestBody  CompetitionDTO competitionDto) {
 
         Competition competition = convertToEntity(competitionDto);
         competitionService.createCompetition(competition);
+        return competition.getId();
+    }
+
+    /**
+     *
+     * @param competitionDto
+     * @return the ID of the competition
+     */
+    @RequestMapping(method = RequestMethod.PUT )
+    public long updateCompetition(@Validated(Existing.class) @RequestBody  CompetitionDTO competitionDto) {
+        Competition competition = convertToEntity(competitionDto);
+        competitionService.updateCompetition(competition);
         return competition.getId();
     }
 
