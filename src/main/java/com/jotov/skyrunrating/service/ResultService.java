@@ -25,7 +25,8 @@ public class ResultService {
     }
 
     public Result getResult(Long id) {
-        return resultRepository.findOne(id);
+//        return resultRepository.findOne(id);
+        return null;
     }
 
     public Result createResult(Result result) {
@@ -50,7 +51,8 @@ public class ResultService {
     }
 
     public void deleteResult(Long id) {
-        resultRepository.delete(id);
+//        resultRepository.delete(id);
+        return;
     }
 
     public List<Result> getResultByRunner(int id) {

@@ -8,7 +8,7 @@ import com.jotov.skyrunrating.service.CompetitionService;
 import com.jotov.skyrunrating.util.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ResourceNotFoundException;
+//import org.springframework.boot.context.config.ResourceNotFoundException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

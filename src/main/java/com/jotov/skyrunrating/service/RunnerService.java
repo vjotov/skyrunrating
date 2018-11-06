@@ -22,7 +22,8 @@ public class RunnerService {
 
     public Runner getRunner(Long id) {
         if (id == null) throw new IllegalArgumentException("An identifier is required to retrieve an instance of Competition");
-        return runnerRepository.findOne(id);
+//        return runnerRepository.findOne(id);
+        return null;
     }
 
     public List<Runner> getRunner(String name) {
@@ -41,6 +42,7 @@ public class RunnerService {
     }
 
     public void deleteRunner(Long id) {
-        runnerRepository.delete(id);
+//        runnerRepository.delete(id);
+        return;
     }
 }

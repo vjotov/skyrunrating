@@ -26,7 +26,8 @@ public class CompetitionService {
 
     public Competition getCompetition(Long id) {
         if (id == null) throw new IllegalArgumentException("An identifier is required to retrieve an instance of Competition");
-        return competiotionRepository.findOne(id);
+//        return competiotionRepository.findOne(id);
+        return null;
     }
 
     public Competition createCompetition(Competition competition) {
@@ -41,7 +42,8 @@ public class CompetitionService {
     }
 
     public void deleteCompetition(Long id) {
-        competiotionRepository.delete(id);
+//        competiotionRepository.delete(id);
+        return;
     }
 
 
