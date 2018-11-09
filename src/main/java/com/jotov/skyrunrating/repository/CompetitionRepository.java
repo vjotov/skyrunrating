@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CompetitionRepository extends CrudRepository<Competition, Long> {
     //@Query("SELECT COUNT(c) FROM Competition c WHERE c.id=?1")
-    boolean existsById(Long id);
+//    boolean existsById(Long id);
+
 }

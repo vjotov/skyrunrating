@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompetitionService {
@@ -26,8 +27,8 @@ public class CompetitionService {
 
     public Competition getCompetition(Long id) {
         if (id == null) throw new IllegalArgumentException("An identifier is required to retrieve an instance of Competition");
-//        return competiotionRepository.findOne(id);
-        return null;
+        Competition aThing =  competiotionRepository.findById(id).orElse(null);
+        return aThing;
     }
 
     public Competition createCompetition(Competition competition) {
